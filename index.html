@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta name="coding" Content-Type= "text/html; charset=utf-8">
 	<title>Javascript Demo</title>
 	<style>
 		body {
@@ -8,32 +9,45 @@
 			color:white;
 			font-size:50px;
 			text-align: center;
-			margin-top:20%;
+			/*margin-top:20%;*/
 		}
-
-		#magic{
+		p{
+			position: absolute;
+			bottom: 50%;
+			display: block;
+			width: 100%;
+			vertical-align: top;
+		}
+		mark{
+			background-color: transparent;
 			color: #777;
 			border-right: 1px solid #777; /*note, the cursor is simply a right border :D */
 			padding-right: 7px;
 			display: inline;
-			font-style: italic;
+			/*font-style: italic;*/
 			/*text-decoration: underline;*/
 		}
+		/*mark::after{
+			content: '&#x1f604;';
+		}*/
 	</style>
 </head>
 <body>
 
-	Coding is <div id="magic"></div>
+	<p>Coding is <mark id="magic"></mark></p>
 
 	<script>
 		// set up initial values
 		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!"],
+			emojis = ["&#x1f604", "&#x1f606;", "&#x1f63c;", "&#x1f64c;", "&#x1f64b;", "&#x1f601;"];
+			/*https://websitebuilders.com/tools/html-codes/emoticons/*/
 			el = document.getElementById('magic'),
 			word_counter = 0,
 			character_counter = 0;
 
+		// EDIT: we will add a pause after the phrase is complete
 		var waiting = 0 ;
-		var phrasePause = 1; // how long to pause between starting a new phrase (units are intervals)
+		var phrasePause = 3; // how long to pause between starting a new phrase (units are # of intervals to wait)
 		function updateText()
 		{
 			// EDIT: moved words[word_counter][character_counter]
@@ -54,8 +68,13 @@
 				character_counter ++;
 
 			}else{
+				if(waiting==0){
+					// EDIT: add an emoji! (do so before you start waiting)
+					el.innerHTML = el.innerHTML + emojis[word_counter];
+				}
 				// EDIT: added a pause after each phrase is finished (makes it easier to read)
 				while(waiting < phrasePause){
+					console.log("waiting",waiting)
 					waiting ++;
 					return
 				}
@@ -70,8 +89,13 @@
 			}
 		}
 
-		setInterval(updateText,200);
-
+		setInterval(updateText,180);
+		/*updateText();
+		updateText();
+		updateText();*/
+		//updateText();
+		//updateText();
+		//updateText();
 	</script>
 
 </body>
