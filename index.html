@@ -13,9 +13,11 @@
 
 		#magic{
 			color: #777;
-			border-right: 1px solid #777;
+			border-right: 1px solid #777; /*note, the cursor is simply a right border :D */
 			padding-right: 7px;
 			display: inline;
+			font-style: italic;
+			/*text-decoration: underline;*/
 		}
 	</style>
 </head>
@@ -24,18 +26,40 @@
 	Coding is <div id="magic"></div>
 
 	<script>
-
+		// set up initial values
 		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!"],
 			el = document.getElementById('magic'),
 			word_counter = 0,
 			character_counter = 0;
 
+		var waiting = 0 ;
+		var phrasePause = 1; // how long to pause between starting a new phrase (units are intervals)
 		function updateText()
 		{
-			el.innerHTML = el.innerHTML+words[word_counter][character_counter++];
-
-			if(character_counter == words[word_counter].length)
+			// EDIT: moved words[word_counter][character_counter]
+			// to be only if we haven't exceeded the phrase length.
+			// otherwise next_cher is undefined 
+			if(character_counter < words[word_counter].length)
 			{
+				// EDIT: changed character_counter++ to character_counter+1
+				// using ++ updates character_counter itself
+				next_char = words[word_counter][character_counter];
+				if (next_char===' '){
+					//EDIT: div width ignores empty space, so force a space here with &nbsp;
+					next_char = '&nbsp;';
+				}
+				el.innerHTML = el.innerHTML + next_char;
+				console.log(el.innerHTML);
+				// EDIT: increment character_counter here
+				character_counter ++;
+
+			}else{
+				// EDIT: added a pause after each phrase is finished (makes it easier to read)
+				while(waiting < phrasePause){
+					waiting ++;
+					return
+				}
+				waiting = 0;
 				word_counter++; 	//choose a different word
 				character_counter = 0;	//start over with the first character of the word
 				el.innerHTML = '';  //set the html to be blank
@@ -46,7 +70,7 @@
 			}
 		}
 
-		setInterval(updateText,300);
+		setInterval(updateText,200);
 
 	</script>
 
