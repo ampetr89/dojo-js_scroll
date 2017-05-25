@@ -1,7 +1,7 @@
 # dojo-js_scroll
 
 ## About
-Exercise for the CodingDojo's Javascript course.  See the learning platform to see how you should improve the codes.  There are several bugs with the codes which are intentional. 
+Exercise for the CodingDojo's Javascript course.  See the learning platform to see how you should improve the codes. There are several bugs with the codes which are intentional. 
 
 ## My edits
 ### fixed last character bug
@@ -15,3 +15,5 @@ Created a span with id="emoji" element immediately after the fill-in-the-blank w
 
 ### added a pause once the phrase completes
 I want there to be little extra time after the phrase is finished before changing to the next phrase. It doesn't seep easy to implement a sleep() function (see [here](stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep)), so instead I relied on the setInterval() function that we already are using. For a few iteration of the function I return early, and this mimics a sleep. The sleep period however, can only be a multiple of the function interval. 
+
+View live page here: https://ampetr89.github.io/dojo-js_scroll
